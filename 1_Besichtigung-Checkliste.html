@@ -5,13 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Besichtigungs-Checkliste</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Segoe UI',sans-serif;background:#f5f5f5;padding:20px}.container{max-width:1000px;margin:0 auto;background:white;border-radius:10px;box-shadow:0 0 20px rgba(0,0,0,0.1)}header{background:linear-gradient(135deg,#1a5490 0%,#2d7ab8 100%);color:white;padding:30px;border-radius:10px 10px 0 0;text-align:center}header h1{font-size:2em;margin-bottom:10px}.instructions{background:#e7f3ff;padding:20px;margin:20px;border-radius:8px;border-left:4px solid #2d7ab8}.instructions h3{color:#1a5490;margin-bottom:10px}.navigation{display:flex;justify-content:center;gap:10px;padding:20px;border-bottom:2px solid #e0e0e0;flex-wrap:wrap}.nav-btn{padding:10px 20px;background:#f0f0f0;border:none;border-radius:5px;cursor:pointer;font-size:14px;transition:all 0.3s}.nav-btn:hover{background:#2d7ab8;color:white}.nav-btn.active{background:#1a5490;color:white}.section{display:none;padding:30px}.section.active{display:block}.section h2{color:#1a5490;margin-bottom:20px;padding-bottom:10px;border-bottom:2px solid #2d7ab8}.form-group{margin-bottom:20px;padding:15px;background:#f9f9f9;border-radius:5px}.form-group label{display:block;font-weight:600;margin-bottom:8px;color:#333}.form-group input[type="text"],.form-group input[type="date"],.form-group input[type="tel"],.form-group input[type="email"],.form-group textarea,.form-group select{width:100%;padding:10px;border:1px solid #ddd;border-radius:4px;font-size:14px}.form-group textarea{min-height:80px;resize:vertical}.checkbox-group{margin-bottom:15px;padding:12px;background:white;border-radius:5px;border-left:3px solid #2d7ab8}.checkbox-group label{display:flex;align-items:center;cursor:pointer;font-weight:normal}.checkbox-group input[type="checkbox"]{width:20px;height:20px;margin-right:10px;cursor:pointer}.radio-group{display:flex;gap:20px;flex-wrap:wrap}.radio-group label{display:flex;align-items:center;cursor:pointer}.radio-group input[type="radio"]{width:18px;height:18px;margin-right:8px;cursor:pointer}.warning-box{background:#fff3cd;border-left:4px solid #ffc107;padding:15px;margin:15px 0;border-radius:5px}.critical-box{background:#f8d7da;border-left:4px solid #dc3545;padding:15px;margin:15px 0;border-radius:5px}.info-box{background:#d1ecf1;border-left:4px solid #17a2b8;padding:15px;margin:15px 0;border-radius:5px;font-size:14px}.action-buttons{display:flex;gap:10px;justify-content:center;padding:20px;border-top:2px solid #e0e0e0}.btn{padding:12px 30px;border:none;border-radius:5px;font-size:16px;cursor:pointer;transition:all 0.3s}.btn-primary{background:#1a5490;color:white}.btn-success{background:#28a745;color:white}.btn-secondary{background:#6c757d;color:white}.progress{background:#e0e0e0;height:30px;border-radius:15px;margin:20px;overflow:hidden}.progress-bar{background:linear-gradient(90deg,#28a745 0%,#20c997 100%);height:100%;transition:width 0.3s;display:flex;align-items:center;justify-content:center;color:white;font-weight:600}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Segoe UI',sans-serif;background:#f5f5f5;padding:20px}.container{max-width:1000px;margin:0 auto;background:white;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,.06);padding:24px}header{margin-bottom:14px}h1{font-size:22px;margin-bottom:4px}p{color:#666}h2{margin:16px 0 8px}label{display:block;margin-bottom:6px;font-weight:600}input[type=text],input[type=tel],input[type=email],input[type=date],textarea,select{width:100%;padding:8px;border:1px solid #ddd;border-radius:6px;background:#fafafa;margin-bottom:10px}textarea{min-height:70px}button{cursor:pointer}nav{margin-bottom:12px}.navigation{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}.nav-btn{background:#f0f0f0;border:0;padding:8px 10px;border-radius:6px}nav .nav-btn.active{background:#007bff;color:#fff}.form-group{margin-bottom:8px}.checkbox-group{margin-bottom:8px}.info-box{background:#eef6ff;padding:8px;border-left:4px solid #7fb3ff;margin-bottom:8px}.warning-box{background:#fff7e6;padding:8px;border-left:4px solid #ffd27a;margin-bottom:8px}.critical-box{background:#ffecec;padding:8px;border-left:4px solid #ff8a8a;margin-bottom:8px}.action-buttons{display:flex;gap:8px;margin-top:12px}
+.progress{background:#eee;border-radius:6px;height:20px;overflow:hidden;margin:10px 0}.progress-bar{height:100%;background:#4caf50;color:#fff;text-align:center;padding:2px 6px}
 </style>
 </head>
 <body>
 <div class="container">
 <header><h1>📋 Besichtigungs-Checkliste</h1><p>Vor Auftragserteilung</p></header>
-<div class="instructions"><h3>📖 Anleitung</h3><ul style="margin-left:20px;margin-top:10px"><li>Navigation oben nutzen</li><li>Häkchen setzen & Felder ausfüllen</li><li>Am Ende speichern</li></ul></div>
+<div class="instructions"><h3>📖 Anleitung</h3><ul style="margin-left:20px;margin-top:10px"><li>Navigation oben nutzen</li><li>Häkchen setzen & Felder ausfüllen</li><li>Am Ende absenden</li></ul></div>
 <div class="progress"><div class="progress-bar" id="progressBar">0%</div></div>
 <div class="navigation">
 <button class="nav-btn active" onclick="showSection(0)">1. Kundendaten</button>
@@ -169,15 +170,86 @@
 <div class="form-group"><label>Bearbeiter:</label><input type="text" id="bearbeiter"></div>
 </div>
 
+<!-- Datenschutzhinweis -->
+<div class="checkbox-group" style="margin-top:12px"><label><input type="checkbox" id="datenschutz_ok"> Ich stimme der Verarbeitung meiner Daten gemäß Datenschutzbestimmungen zu.</label></div>
+
 <div class="action-buttons">
 <button class="btn btn-secondary" onclick="resetForm()">🔄 Reset</button>
 <button class="btn btn-success" onclick="saveData()">💾 Speichern</button>
 <button class="btn btn-primary" onclick="window.print()">📄 PDF</button>
+<button class="btn btn-primary" onclick="submitToFormspree()">📨 Absenden</button>
 </div>
 </div>
 
 <script>
-function showSection(i){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.getElementById('section'+i).classList.add('active');document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.nav-btn')[i].classList.add('active');updateProgress()}function updateProgress(){const c=document.querySelectorAll('input[type="checkbox"]').length;const ch=document.querySelectorAll('input[type="checkbox"]:checked').length;const p=Math.round((ch/c)*100);const b=document.getElementById('progressBar');b.style.width=p+'%';b.textContent=p+'%'}function saveData(){const d={};document.querySelectorAll('input[type="text"],input[type="tel"],input[type="email"],input[type="date"],textarea,select').forEach(e=>{if(e.id)d[e.id]=e.value});document.querySelectorAll('input[type="checkbox"]').forEach(e=>{if(e.id)d[e.id]=e.checked});document.querySelectorAll('input[type="radio"]:checked').forEach(e=>{d[e.name]=e.value});localStorage.setItem('besichtigungsCheckliste',JSON.stringify(d));alert('✅ Gespeichert!')}function loadData(){const s=localStorage.getItem('besichtigungsCheckliste');if(!s)return;const d=JSON.parse(s);Object.keys(d).forEach(k=>{const e=document.getElementById(k);if(e&&(e.type==='text'||e.type==='tel'||e.type==='email'||e.type==='date'||e.tagName==='TEXTAREA'||e.tagName==='SELECT'))e.value=d[k];if(e&&e.type==='checkbox')e.checked=d[k]});document.querySelectorAll('input[type="radio"]').forEach(e=>{if(d[e.name]===e.value)e.checked=true});updateProgress()}function resetForm(){if(confirm('Alles löschen?')){localStorage.removeItem('besichtigungsCheckliste');location.reload()}}document.addEventListener('DOMContentLoaded',()=>{loadData();document.querySelectorAll('input[type="checkbox"]').forEach(c=>c.addEventListener('change',updateProgress))});
+function showSection(i){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById('section'+i).classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.nav-btn')[i].classList.add('active');
+  // progress
+  const total = document.querySelectorAll('.section').length;
+  const pct = Math.round(((i+1)/total)*100);
+  const bar = document.getElementById('progressBar'); if(bar) bar.textContent = pct + '%';
+  if(bar) bar.style.width = pct + '%';
+}
+
+function resetForm(){
+  if(!confirm('Formular zurücksetzen?')) return;
+  document.querySelectorAll('input,textarea,select').forEach(el=>{
+    if(el.type==='checkbox' || el.type==='radio') el.checked = false;
+    else el.value = '';
+  });
+}
+
+function saveData(){
+  const data = collectFormData();
+  try{ localStorage.setItem('besichtigung_checklist', JSON.stringify(data)); alert('Gespeichert (local)'); }catch(e){alert('Speichern fehlgeschlagen');}
+}
+
+function collectFormData(){
+  const data = {};
+  // collect by id
+  document.querySelectorAll('[id]').forEach(el=>{
+    const id = el.id;
+    if(!id) return;
+    if(el.type==='checkbox') data[id] = el.checked;
+    else if(el.type==='radio') { /* ignore, handled by name below */ }
+    else data[id] = el.value || '';
+  });
+  // collect radio groups by name
+  const radios = document.querySelectorAll('input[type=radio][name]');
+  const radioNames = new Set(); radios.forEach(r=>radioNames.add(r.name));
+  radioNames.forEach(name=>{ const sel = document.querySelector('input[type=radio][name="'+name+'"]:checked'); data[name] = sel ? sel.value : ''; });
+  return data;
+}
+
+async function submitToFormspree(){
+  if(!document.getElementById('datenschutz_ok') || !document.getElementById('datenschutz_ok').checked){ alert('Bitte Datenschutzbestätigung ankreuzen.'); return; }
+  const data = collectFormData();
+  // optional subject
+  data._subject = 'Neue Besichtigungs-Checkliste';
+  try{
+    const resp = await fetch('https://formspree.io/f/DEINE-ID', {
+      method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data)
+    });
+    if(resp.ok){ window.location.href = 'danke.html'; } else { const txt = await resp.text(); alert('Senden fehlgeschlagen: '+resp.status+' '+txt); }
+  }catch(e){ alert('Fehler beim Senden: '+e.message); }
+}
+
+// restore saved data on load
+window.addEventListener('load', ()=>{
+  const raw = localStorage.getItem('besichtigung_checklist');
+  if(!raw) return;
+  try{
+    const data = JSON.parse(raw);
+    Object.keys(data).forEach(k=>{
+      const el = document.getElementById(k);
+      if(el){ if(el.type==='checkbox') el.checked = data[k]; else el.value = data[k]; }
+      else if(document.querySelectorAll('input[type=radio][name="'+k+'"]').length){ const sel = document.querySelector('input[type=radio][name="'+k+'"][value="'+data[k]+'"]'); if(sel) sel.checked = true; }
+    });
+  }catch(e){}
+});
 </script>
 </body>
 </html>
