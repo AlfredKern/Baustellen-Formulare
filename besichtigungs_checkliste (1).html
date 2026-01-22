@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Besichtigungs-Checkliste</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Segoe UI',sans-serif;background:#f5f5f5;padding:20px}.container{max-width:1000px;margin:0 auto;background:white;border-radius:10px;box-shadow:0 0 20px rgba(0,0,0,0.1)}header{background:linear-gradient(135deg,#1a5490 0%,#2d7ab8 100%);color:white;padding:30px;border-radius:10px 10px 0 0;text-align:center}header h1{font-size:2em;margin-bottom:10px}.instructions{background:#e7f3ff;padding:20px;margin:20px;border-radius:8px;border-left:4px solid #2d7ab8}.instructions h3{color:#1a5490;margin-bottom:10px}.navigation{display:flex;justify-content:center;gap:10px;padding:20px;border-bottom:2px solid #e0e0e0;flex-wrap:wrap}.nav-btn{padding:10px 20px;background:#f0f0f0;border:none;border-radius:5px;cursor:pointer;font-size:14px;transition:all 0.3s}.nav-btn:hover{background:#2d7ab8;color:white}.nav-btn.active{background:#1a5490;color:white}.section{display:none;padding:30px}.section.active{display:block}.section h2{color:#1a5490;margin-bottom:20px;padding-bottom:10px;border-bottom:2px solid #2d7ab8}.form-group{margin-bottom:20px;padding:15px;background:#f9f9f9;border-radius:5px}.form-group label{display:block;font-weight:600;margin-bottom:8px;color:#333}.form-group input[type="text"],.form-group input[type="date"],.form-group input[type="tel"],.form-group input[type="email"],.form-group textarea,.form-group select{width:100%;padding:10px;border:1px solid #ddd;border-radius:4px;font-size:14px}.form-group textarea{min-height:80px;resize:vertical}.checkbox-group{margin-bottom:15px;padding:12px;background:white;border-radius:5px;border-left:3px solid #2d7ab8}.checkbox-group label{display:flex;align-items:center;cursor:pointer;font-weight:normal}.checkbox-group input[type="checkbox"]{width:20px;height:20px;margin-right:10px;cursor:pointer}.radio-group{display:flex;gap:20px;flex-wrap:wrap}.radio-group label{display:flex;align-items:center;cursor:pointer}.radio-group input[type="radio"]{width:18px;height:18px;margin-right:8px;cursor:pointer}.warning-box{background:#fff3cd;border-left:4px solid #ffc107;padding:15px;margin:15px 0;border-radius:5px}.critical-box{background:#f8d7da;border-left:4px solid #dc3545;padding:15px;margin:15px 0;border-radius:5px}.info-box{background:#d1ecf1;border-left:4px solid #17a2b8;padding:15px;margin:15px 0;border-radius:5px;font-size:14px}.action-buttons{display:flex;gap:10px;justify-content:center;padding:20px;border-top:2px solid #e0e0e0}.btn{padding:12px 30px;border:none;border-radius:5px;font-size:16px;cursor:pointer;transition:all 0.3s}.btn-primary{background:#1a5490;color:white}.btn-success{background:#28a745;color:white}.btn-secondary{background:#6c757d;color:white}.progress{background:#e0e0e0;height:30px;border-radius:15px;margin:20px;overflow:hidden}.progress-bar{background:linear-gradient(90deg,#28a745 0%,#20c997 100%);height:100%;transition:width 0.3s;display:flex;align-items:center;justify-content:center;color:white;font-weight:600}
+</style>
+</head>
+<body>
+<div class="container">
+<header><h1>📋 Besichtigungs-Checkliste</h1><p>Vor Auftragserteilung</p></header>
+<div class="instructions"><h3>📖 Anleitung</h3><ul style="margin-left:20px;margin-top:10px"><li>Navigation oben nutzen</li><li>Häkchen setzen & Felder ausfüllen</li><li>Am Ende speichern</li></ul></div>
+<div class="progress"><div class="progress-bar" id="progressBar">0%</div></div>
+<div class="navigation">
+<button class="nav-btn active" onclick="showSection(0)">1. Kundendaten</button>
+<button class="nav-btn" onclick="showSection(1)">2. Verkauf</button>
+<button class="nav-btn" onclick="showSection(2)">3. Technik</button>
+<button class="nav-btn" onclick="showSection(3)">4. Baustelle</button>
+<button class="nav-btn" onclick="showSection(4)">5. FAQ</button>
+<button class="nav-btn" onclick="showSection(5)">6. Abschluss</button>
+</div>
+
+<div class="section active" id="section0">
+<h2>1. Kundendaten</h2>
+<div class="form-group"><label>Name:</label><input type="text" id="kunde_name"></div>
+<div class="form-group"><label>Adresse:</label><input type="text" id="kunde_adresse"></div>
+<div class="form-group"><label>Telefon:</label><input type="tel" id="kunde_tel"></div>
+<div class="form-group"><label>E-Mail:</label><input type="email" id="kunde_email"></div>
+<div class="form-group"><label>Ausweichnummer:</label><input type="text" id="kunde_ausweich"></div>
+<div class="form-group"><label>Datum Besichtigung:</label><input type="date" id="besichtigung_datum"></div>
+<div class="checkbox-group"><label><input type="checkbox" id="check_erstkontakt"> Erstkontakt erfolgreich</label></div>
+<div class="checkbox-group"><label><input type="checkbox" id="check_email"> E-Mail gesendet</label></div>
+</div>
+
+<div class="section" id="section1">
+<h2>2. Verkaufsgespräch</h2>
+<div class="form-group"><label>Warum Kunde uns kontaktiert?</label>
+<div class="radio-group">
+<label><input type="radio" name="kontaktgrund" value="empfehlung"> Empfehlung</label>
+<label><input type="radio" name="kontaktgrund" value="internet"> Internet</label>
+<label><input type="radio" name="kontaktgrund" value="baustelle"> Baustelle</label>
+</div>
+<input type="text" id="kontaktgrund_details" style="margin-top:10px">
+</div>
+<div class="form-group"><label>Kundenwunsch:</label><textarea id="kunde_wunsch"></textarea></div>
+<div class="checkbox-group"><label><input type="checkbox" id="check_machbar"> Machbarkeit erklärt</label></div>
+<div class="checkbox-group"><label><input type="checkbox" id="check_preise"> Preise informiert</label></div>
+<div class="form-group"><label>Nachlass?</label>
+<div class="radio-group">
+<label><input type="radio" name="nachlass" value="ja"> Ja</label>
+<label><input type="radio" name="nachlass" value="nein"> Nein</label>
+</div>
+<input type="text" id="nachlass_details" style="margin-top:10px">
+</div>
+<div class="checkbox-group"><label><input type="checkbox" id="check_interessiert"> Kunde interessiert</label></div>
+<div class="form-group"><label>Schwierig? Hinweise?</label><textarea id="kunde_hinweise"></textarea></div>
+</div>
+
+<div class="section" id="section2">
+<h2>3. Technische Klärung</h2>
+<div class="form-group"><label>Wer macht Einreichung?</label>
+<div class="radio-group">
+<label><input type="radio" name="einreichung" value="wir"> Wir</label>
+<label><input type="radio" name="einreichung" value="kunde"> Kunde</label>
+<label><input type="radio" name="einreichung" value="architekt"> Architekt</label>
+</div>
+<input type="text" id="einreichung_details" style="margin-top:10px">
+</div>
+<div class="form-group"><label>Wer macht Anbindeleitungen?</label>
+<div class="radio-group">
+<label><input type="radio" name="anbindung" value="wir"> Wir</label>
+<label><input type="radio" name="anbindung" value="kunde"> Kunde</label>
+</div>
+<input type="text" id="anbindung_details" style="margin-top:10px">
+</div>
+<div class="form-group"><label>Wer besorgt Mulden?</label>
+<div class="radio-group">
+<label><input type="radio" name="mulden" value="wir"> Wir</label>
+<label><input type="radio" name="mulden" value="kunde"> Kunde</label>
+</div>
+<input type="text" id="mulden_details" style="margin-top:10px">
+</div>
+<div class="checkbox-group"><label><input type="checkbox" id="check_strassensperre"> Straßensperre geklärt</label></div>
+<div class="checkbox-group"><label><input type="checkbox" id="check_pflichten"> Kundenpflichten erklärt</label></div>
+<div class="info-box"><strong>Kunde muss bereitstellen:</strong> Strom 32A, Wasser 4bar, Zufahrt, Aufstellfläche</div>
+<div class="checkbox-group"><label><input type="checkbox" id="check_strom"> Strom vorhanden</label></div>
+<div class="checkbox-group"><label><input type="checkbox" id="check_wasser"> Wasser vorhanden</label></div>
+</div>
+
+<div class="section" id="section3">
+<h2>4. Baustelleninfos</h2>
+<div class="form-group"><label>Ort/Besonderheiten:</label><textarea id="baustelle_ort"></textarea></div>
+<div class="form-group"><label>Bohrsystem:</label>
+<select id="bohrsystem">
+<option value="">Wählen...</option>
+<option value="hammerbohren">Hammerbohren</option>
+<option value="spuelbohren">Spülbohren</option>
+</select>
+</div>
+<div class="form-group"><label>Verpressmaterial:</label><input type="text" id="verpressmaterial"></div>
+<div class="form-group"><label>Sonden:</label>
+<div class="radio-group">
+<label><input type="radio" name="sonden" value="duplex"> Duplex</label>
+<label><input type="radio" name="sonden" value="simplex"> Simplex</label>
+</div>
+<input type="text" id="sonden_details" style="margin-top:10px">
+</div>
+<div class="form-group"><label>Auflagen Bescheid:</label><textarea id="auflagen"></textarea></div>
+<div class="form-group"><label>Start geplant:</label><input type="date" id="start_datum"></div>
+<div class="form-group"><label>Meter gesamt:</label><input type="text" id="meter_gesamt"></div>
+<div class="form-group"><label>Zufahrt OK?</label>
+<div class="radio-group">
+<label><input type="radio" name="zufahrt" value="ja"> Ja</label>
+<label><input type="radio" name="zufahrt" value="nein"> Nein</label>
+</div>
+<textarea id="zufahrt_details" style="margin-top:10px"></textarea>
+</div>
+<div class="checkbox-group"><label><input type="checkbox" id="check_fotos"> Fotos gemacht</label></div>
+</div>
+
+<div class="section" id="section4">
+<h2>5. FAQ für Kunden</h2>
+<div class="warning-box"><strong>Raster 6-8m:</strong> Zu nah = gegenseitige Beeinflussung</div>
+<div class="warning-box"><strong>Erdbeben:</strong> Sonden flexibel, kein Problem</div>
+<div class="warning-box"><strong>Haltbarkeit:</strong> 50-100 Jahre</div>
+<div class="warning-box"><strong>Duplex vs Simplex:</strong> Duplex effizienter aber teurer</div>
+<div class="warning-box"><strong>Garantie:</strong> Gewährleistung + Herstellergarantie</div>
+<div class="warning-box"><strong>Frostschutz:</strong> -15 bis -20°C, 30-35% Mischung</div>
+<div class="warning-box"><strong>Dauer:</strong> 1 Bohrung 100-150m = 1-2 Tage</div>
+<div class="warning-box"><strong>Vorteile:</strong> Hohe Effizienz, kein Lärm, wartungsarm</div>
+<div class="warning-box"><strong>Leitungen:</strong> Min. 80cm tief (Frostgrenze)</div>
+<div class="warning-box"><strong>Aktivkühlung:</strong> Wärmepumpe kann kühlen</div>
+<div class="warning-box"><strong>Inverter:</strong> Selbstregelnd, effizienter</div>
+<div class="warning-box"><strong>Normen:</strong> ÖNORM B 2600, Wasserrechtsgesetz</div>
+<div class="warning-box"><strong>Artesischer Brunnen:</strong> Geologe + Behörde, Grundbesitzer haftet</div>
+<div class="warning-box"><strong>Kontrolle:</strong> Geologe, Behörde, Druckprüfung</div>
+<div class="warning-box"><strong>Unser Gewerk:</strong> Bohrungen, Sonden, Verpressung, Druckprüfung. NICHT: Wärmepumpe, Pflaster</div>
+<div class="critical-box"><strong>HAFTUNGSAUSSCHLÜSSE - Schriftlich bestätigen:</strong><br>
+1. Flurschäden - keine Haftung<br>
+2. Abstand Nachbar - Bestätigung<br>
+3. Wasser auf Grundstück - Bestätigung<br>
+4. Wasser in Kanal - illegal, Bestätigung + Aufklärung</div>
+<div class="checkbox-group"><label><input type="checkbox" id="check_faq"> FAQs besprochen</label></div>
+</div>
+
+<div class="section" id="section5">
+<h2>6. Abschluss</h2>
+<div class="form-group"><label>Will Kunde beauftragen?</label>
+<div class="radio-group">
+<label><input type="radio" name="beauftragung" value="ja"> ✅ Ja</label>
+<label><input type="radio" name="beauftragung" value="wahrscheinlich"> ⏳ Wahrscheinlich</label>
+<label><input type="radio" name="beauftragung" value="unsicher"> ❓ Unsicher</label>
+<label><input type="radio" name="beauftragung" value="nein"> ❌ Nein</label>
+</div>
+</div>
+<div class="checkbox-group"><label><input type="checkbox" id="check_auftragsbestaetigung"> Auftragsbestätigung eingeleitet</label></div>
+<div class="checkbox-group"><label><input type="checkbox" id="check_kunde_bestaetigt"> Kunde hat unterschrieben</label></div>
+<div class="form-group"><label>Ausweichnummer intern:</label><input type="text" id="ausweichnummer_intern"></div>
+<div class="form-group"><label>Anzahlung?</label>
+<div class="radio-group">
+<label><input type="radio" name="anzahlung" value="ja"> Ja</label>
+<label><input type="radio" name="anzahlung" value="nein"> Nein</label>
+</div>
+<input type="text" id="anzahlung_details" placeholder="50% bei Auftrag" style="margin-top:10px">
+</div>
+<div class="form-group"><label>Zusammenfassung / Was NICHT gemacht?</label><textarea id="zusammenfassung"></textarea></div>
+<div class="form-group"><label>Bearbeiter:</label><input type="text" id="bearbeiter"></div>
+</div>
+
+<div class="action-buttons">
+<button class="btn btn-secondary" onclick="resetForm()">🔄 Reset</button>
+<button class="btn btn-success" onclick="saveData()">💾 Speichern</button>
+<button class="btn btn-primary" onclick="window.print()">📄 PDF</button>
+</div>
+</div>
+
+<script>
+function showSection(i){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.getElementById('section'+i).classList.add('active');document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.nav-btn')[i].classList.add('active');updateProgress()}function updateProgress(){const c=document.querySelectorAll('input[type="checkbox"]').length;const ch=document.querySelectorAll('input[type="checkbox"]:checked').length;const p=Math.round((ch/c)*100);const b=document.getElementById('progressBar');b.style.width=p+'%';b.textContent=p+'%'}function saveData(){const d={};document.querySelectorAll('input[type="text"],input[type="tel"],input[type="email"],input[type="date"],textarea,select').forEach(e=>{if(e.id)d[e.id]=e.value});document.querySelectorAll('input[type="checkbox"]').forEach(e=>{if(e.id)d[e.id]=e.checked});document.querySelectorAll('input[type="radio"]:checked').forEach(e=>{d[e.name]=e.value});localStorage.setItem('besichtigungsCheckliste',JSON.stringify(d));alert('✅ Gespeichert!')}function loadData(){const s=localStorage.getItem('besichtigungsCheckliste');if(!s)return;const d=JSON.parse(s);Object.keys(d).forEach(k=>{const e=document.getElementById(k);if(e&&(e.type==='text'||e.type==='tel'||e.type==='email'||e.type==='date'||e.tagName==='TEXTAREA'||e.tagName==='SELECT'))e.value=d[k];if(e&&e.type==='checkbox')e.checked=d[k]});document.querySelectorAll('input[type="radio"]').forEach(e=>{if(d[e.name]===e.value)e.checked=true});updateProgress()}function resetForm(){if(confirm('Alles löschen?')){localStorage.removeItem('besichtigungsCheckliste');location.reload()}}document.addEventListener('DOMContentLoaded',()=>{loadData();document.querySelectorAll('input[type="checkbox"]').forEach(c=>c.addEventListener('change',updateProgress))});
+</script>
+</body>
+</html>
